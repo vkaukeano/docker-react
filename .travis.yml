@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t vkaukeano/docker-react -f Dockerfile.dev .
+  - docker build -t vkaukeano/docker-react2_tests -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true vkaukeano docker-react npm run test -- --coverage
