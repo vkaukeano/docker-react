@@ -1,8 +1,6 @@
 language: node
-edge: true
 node_js:
   - lts/*
-sudo: required
 services:
   - docker
 
