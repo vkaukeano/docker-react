@@ -1,6 +1,7 @@
 language: node
 node_js:
   - lts/*
+sudo: required
 services:
   - docker
 
@@ -10,14 +11,14 @@ before_install:
 script:
   - docker run -e CI=true vkaukeano/docker-react npm run test -- --coverage
 
-  deploy:
-    provider: elasticbeanstalk
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    region: "us-east-1"
-    app: "docker-react"
-    env: "Docker-env"
-    bucket_name: "arn:aws:s3:::elasticbeanstalk-us-east-1-602578598081"
-    bucket_path: "docker-react"
-    on:
-      branch: master
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "Docker-env"
+  bucket_name: "arn:aws:s3:::elasticbeanstalk-us-east-1-602578598081"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
